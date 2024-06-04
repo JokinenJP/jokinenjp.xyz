@@ -1,0 +1,21 @@
+name: Frontend checks
+
+on: push
+
+jobs:
+  frontend-checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./services/frontend
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: test
+        run: npm run test:unit
+      - name: build
+        run: npm run build
